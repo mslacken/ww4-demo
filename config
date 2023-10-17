@@ -1,8 +1,9 @@
 # networt configuration for the demo used for:
 # - static congiguration of qcow2 ww4 image
 # - terraform network
-IPADDR=${IPADDR:-172.16.16.250}
-IPNET=${IPNET:-172.16.16.250}
-NETMASK=${NETMASK:-255.255.255.0}
-GATEWAY=${GATEWAY:-172.16.16.1}
-DNS=${DNS:-172.16.16.1}
+json_config=ww4-demo.json
+IPADDR=$(jq .IPADDR < ww4-demo.json)
+IPNET=$(jq .IPNET < ww4-demo.json)
+NETMASK=$(jq .NETMASK < ww4-demo.json)
+GATEWAY=$(jq .GATEWAY < ww4-demo.json)
+DNS=$(jq .DNS < ww4-demo.json)
