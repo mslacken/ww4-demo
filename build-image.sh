@@ -6,9 +6,9 @@ VERS=15.5
 cat > kiwi-description/root/etc/sysconfig/network/ifcfg-lan0 <<EOF
 # created by $0
 BOOTPROTO='static'
-IPADDR='$IPADDR'
-NETMASK='$NETMASK'
-GATEWAY='$GATEWAY'
+IPADDR=$IPADDR
+NETMASK=$NETMASK
+GATEWAY=$GATEWAY
 EOF
 cat > kiwi-description/root/etc/sysconfig/network/route <<EOF
 # created by $0
@@ -16,7 +16,7 @@ default $GATEWAY - -
 EOF
 cat > kiwi-description/root/etc/sysconfig/network/config <<EOF
 # created by $0
-NETCONFIG_DNS_STATIC_SERVERS="$DNS"
+NETCONFIG_DNS_STATIC_SERVERS=$DNS
 EOF
 if [ -e ~/.ssh/authorized_keys ] ; then
   mkdir -p kiwi-description/root/root/.ssh/
