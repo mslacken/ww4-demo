@@ -46,7 +46,13 @@ suseInsertService sshd
 #--------------------------------------
 baseSetRunlevel 3
 
+#======================================
 # add local repo
+#--------------------------------------
 mkdir /root/local
 zypper ar -p10 /root/local/ local
 
+#======================================
+# lower grub timeout
+#--------------------------------------
+sed -i 's/GRUB_TIMEOUT=.*/GRUB_TIMEOUT=1/' /etc/default/grub

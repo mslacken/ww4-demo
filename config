@@ -1,9 +1,13 @@
 # networt configuration for the demo used for:
 # - static congiguration of qcow2 ww4 image
 # - terraform network
+function read_json() {
+  jq .${1} < config.json | tr -d '"'
+}
 json_config=config.json
-IPADDR=$(jq .IPADDR < ${json_config})
-IPNET=$(jq .IPNET < ${json_config})
-NETMASK=$(jq .NETMASK < ${json_config})
-GATEWAY=$(jq .GATEWAY < ${json_config})
-DNS=$(jq .DNS < ${json_config})
+IPADDR=$(read_json IPADDR)
+IPSTART=$(read_json IPSTART)
+IPNET=$(read_json IPNET)
+NETMASK=$(read_json NETMASK)
+GATEWAY=$(read_json GATEWAY)
+DNS=$(read_json DNS)
