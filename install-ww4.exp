@@ -1,0 +1,25 @@
+#!/usr/bin/expect -f
+set prompt {ww4-demo }
+set lineterminationChar "\r"
+log_user 0
+set timeout 1
+
+spawn ssh root@172.16.16.250
+send -- "zypper ref\r"
+
+expect   {
+         $lineterminationChar   { append output $expect_out(buffer);exp_continue}
+         eof                    { append output $expect_out(buffer)}
+         }
+puts "Update the repos first:  $output"
+
+puts "Installing warewulf4"
+send -- "zypper install -y warewulf4\r"
+expect   {
+         $lineterminationChar   { append output $expect_out(buffer);exp_continue}
+         eof                    { append output $expect_out(buffer)}
+         }
+puts "Installed warewul4:  $output"
+
+close
+exit
