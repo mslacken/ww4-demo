@@ -3,6 +3,7 @@ source config
 DATESTR=$(date  +%Y%m%d)
 VERS=15.5
 # prepare the configuration
+mkdir -p kiwi-description/root/etc/sysconfig/network/ 
 cat > kiwi-description/root/etc/sysconfig/network/ifcfg-lan0 <<EOF
 # created by $0
 BOOTPROTO='static'
