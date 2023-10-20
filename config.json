@@ -6,5 +6,6 @@
   "GATEWAY": "172.16.16.1",
   "DNS": "172.16.16.1",
   "NODES": 4,
-  "STORAGE": "/var/tmp/ww4-demo"
+  "STORAGE": "/var/tmp/ww4-demo",
+  "IMAGE": "SLES15-SP5-Minimal-VM.x86_64-Cloud-GM.qcow2"
 }

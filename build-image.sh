@@ -1,7 +1,6 @@
 #!/bin/bash
 source config
-DATESTR=$(date  +%Y%m%d)
-VERS=15.5
+IMAGE=${1:-leap-15.5.kiwi}
 # prepare the configuration
 mkdir -p kiwi-description/root/etc/sysconfig/network/ 
 cat > kiwi-description/root/etc/sysconfig/network/ifcfg-lan0 <<EOF
@@ -51,12 +50,25 @@ if [ ! -e kiwi-description/root/etc/ssh ] ; then
   ssh-keygen -A -f kiwi-description/root
 fi
 # delete two times as kiwi hates it otherwise
-sudo rm -rf /var/tmp/demo_build || exit 1
-sudo /usr/bin/kiwi \
-  --profile Disk system build \
-  --description ./kiwi-description/ \
-  --target-dir /var/tmp/demo_build || exit 1
+# check if can hvae the boxed build without root
+if rpm -q python3-kiwi_boxed_plugin &> /dev/null  ; then
+  rm -rf /var/tmp/demo_build || exit 1
+  /usr/bin/kiwi \
+    --profile Disk system boxbuild  --box leap \
+    --description ./kiwi-description/ \
+    --target-dir /var/tmp/demo_build || exit 1
+else 
+  sudo rm -rf /var/tmp/demo_build || exit 1
+  sudo /usr/bin/kiwi \
+    --profile Disk system build \
+    --description ./kiwi-description/ \
+    --target-dir /var/tmp/demo_build || exit 1
+fi
 
-cp /var/tmp/demo_build/Leap-15.5_appliance.x86_64-0.0.1.qcow2 .
-sudo rm -rf /var/tmp/demo_build || exit 1
+cp /var/tmp/demo_build/*.qcow2 .
+if rpm -q python3-kiwi_boxed_plugin &> /dev/null  ; then
+  rm -rf /var/tmp/demo_build || exit 1
+else
+  sudo rm -rf /var/tmp/demo_build || exit 1
+fi
 
