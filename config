@@ -12,6 +12,10 @@ IPNET=$(read_json IPNET)
 NETMASK=$(read_json NETMASK)
 GATEWAY=$(read_json GATEWAY)
 DNS=$(read_json DNS)
+DEMOCONT=$(read_json DEMOCONT)
+DEMOCONTSRC=$(read_json DEMOCONTSRC)
+IMAGE=$(read_json IMAGE)
+IMAGESRC=$(read_json IMAGESRC)
 
 
 function run_on_hostq() {
