@@ -22,7 +22,7 @@ run_on_host $IPADDR "wwctl overlay build -H" "Recreate the host overlay as the t
 run_on_host $IPADDR "systemctl enable --now munge"
 run_on_host $IPADDR "systemctl enable --now slurmctld"
 show "Boot the nodes"
-for host in $(jq "keys[]" macs.json | tr -d '"') ; do
+for host in $(jq "keys[]" macs.json | tr -d '"' | grep demo) ; do
   virsh -c qemu:///system start $host
 done
 show "Wait for 1 minute so that the hosts come up"
@@ -32,6 +32,6 @@ wait 2
 run_on_host $IPADDR "srun -N4 uname -n" "Run a most simple slurm job"
 wait 20 
 show "shut down the nodes"
-for host in $(jq "keys[]" macs.json | tr -d '"') ; do
+for host in $(jq "keys[]" macs.json | tr -d '"' | grep demo) ; do
   virsh -c qemu:///system destroy $host
 done

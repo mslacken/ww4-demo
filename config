@@ -8,6 +8,7 @@ function read_json() {
 json_config=config.json
 IPADDR=$(read_json IPADDR)
 IPSTART=$(read_json IPSTART)
+EFISTART=$(read_json EFISTART)
 IPNET=$(read_json IPNET)
 NETMASK=$(read_json NETMASK)
 GATEWAY=$(read_json GATEWAY)
