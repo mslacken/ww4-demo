@@ -6,7 +6,8 @@ warewulf demo which uses a scripted setup
 * User must be in the `libvirt` group in order to start virtual machines and network
 * The file `~/.ssh/authorized_keys` must only contain one key/line
 * following packages must be installed: `virt-viewer terraform python3-kiwi wget`
-* For the first run a vpn connection ist required
+* For the first run a vpn connection is required to download the SLE qcow image
+* include SCC userid and product registration keys in sle-keys.json, which is created the first time you run it
 
 The demo can be started with the script `./demo-run.sh` which calls the scripts in 
 following order
