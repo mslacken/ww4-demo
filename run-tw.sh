@@ -17,7 +17,11 @@ wait 2
 show "Boot demo01 and watch it booting"
 virsh -c qemu:///system start demo01
 virt-viewer -w -c qemu:///system demo01 &
-wait 40
+show "Waiting for the host ($IPSTART) to become online"
+while true ; do
+  ssh -xo "StrictHostKeyChecking=no" root@$IPSTART uname -n 2> /dev/null && break || echo -n "."
+  sleep 1
+done
 run_on_host $IPSTART "neofetch" "Getting our pretty graph on tumbleweed"
 wait 4
 kill %1
