@@ -25,6 +25,7 @@ done
 run_on_host $IPSTART "neofetch" "Getting our pretty graph on tumbleweed"
 wait_key $WAIT_LONG
 kill %1
+wait %1 2> /dev/null
 
 virsh -c qemu:///system destroy demo01
 run_on_host $IPADDR "wwctl node set demo01 -y --container UNDEF" "Clean up"

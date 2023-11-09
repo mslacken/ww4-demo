@@ -6,5 +6,6 @@ virsh -c qemu:///system start demo01
 virt-viewer -w -c qemu:///system demo01 &
 wait_key 40
 kill %1
+wait %1 2> /dev/null
 virsh -c qemu:///system destroy demo01
 
