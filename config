@@ -30,7 +30,7 @@ function run_on_hostq() {
   if [ -n "$comment" ]; then 
     echo -e "`tput bold``tput smul`$comment`tput rmul``tput sgr0`"
   fi
-  ssh -x -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=/dev/null" root@$remhost $cmd || exit 1
+  ssh -x -o "StrictHostKeyChecking=no" root@$remhost $cmd || exit 1
 }
 
 function run_on_host() {
