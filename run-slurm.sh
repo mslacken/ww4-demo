@@ -12,9 +12,9 @@ run_on_host $IPADDR "wwctl container exec $DEMOCONT /usr/bin/echo -- -- $munge_g
 run_on_host $IPADDR "wwctl container exec $DEMOCONT /usr/bin/zypper -- -- install -y slurm-node slurm-munge" "Install slurm in the container"
 run_on_host $IPADDR "wwctl container exec $DEMOCONT /usr/bin/systemctl -- -- enable slurmd" "Start slurmd on boot for the container"
 run_on_host $IPADDR "wwctl container exec $DEMOCONT /usr/bin/systemctl -- -- enable munge" "Start munge on boot for the container"
-wait 2
+wait_key $WAIT_SHORT
 run_on_host $IPADDR "wwctl overlay show host /etc/slurm/slurm.conf.ww" "Check our slurm.conf installed by the package warewulf4-slurm"
-wait 5
+wait_key $WAIT_LONG
 show "How does it look like rendered?"
 run_on_host $IPADDR "wwctl overlay show host /etc/slurm/slurm.conf.ww -r demo01 | tail" 
 show "Start slurmctld and munge on the ww4-host"
@@ -28,9 +28,9 @@ done
 show "Wait for 1 minute so that the hosts come up"
 #sleep 60
 run_on_host $IPADDR "sinfo" "Get the queue state of slurm"
-wait 2
+wait_key $WAIT_SHORT
 run_on_host $IPADDR "srun -N4 uname -n" "Run a most simple slurm job"
-wait 20 
+wait_key 20
 show "shut down the nodes"
 for host in $(jq "keys[]" macs.json | tr -d '"' | grep demo) ; do
   virsh -c qemu:///system destroy $host

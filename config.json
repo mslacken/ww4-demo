@@ -12,5 +12,8 @@
   "IMAGE": "SLES15-SP5-Minimal-VM.x86_64-Cloud-GM.qcow2",
   "IMAGESRC": "https://download.suse.de/install/SLE-15-SP5-Minimal-GM/SLES15-SP5-Minimal-VM.x86_64-Cloud-GM.qcow2",
   "DEMOCONT": "leap15.5",
-  "DEMOCONTSRC": "docker://registry.opensuse.org/science/warewulf/leap-15.5/containers/kernel:latest"
+  "DEMOCONTSRC": "docker://registry.opensuse.org/science/warewulf/leap-15.5/containers/kernel:latest",
+  "WAIT_FACTOR": 1,
+  "WAIT_SHORT": 5,
+  "WAIT_LONG": 10
 }
