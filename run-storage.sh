@@ -14,10 +14,10 @@ while true ; do
   sleep 1
 done
 run_on_host $IPSTART "df -h" "Check that /scratch is mounted"
-wait 10
+wait_key $WAIT_SHORT
 run_on_host $IPSTART "cat /etc/fstab" "There is an entry in fstab"
 run_on_host $IPSTART "cat /etc/systemd/system/scratch.mount" "mount is done with systemd unit"
-wait 10
+wait_key $WAIT_SHORT
 run_on_host $IPADDR "wwctl node set demo01 \
   --diskname /dev/vda --diskwipe --partsize=1024\
   --partname swap --partcreate --partnumber 1 \
@@ -29,9 +29,9 @@ while true ; do
   sleep 1
 done
 run_on_host $IPSTART "df -h" "Check that /scratch is mounted"
-sleep 10
-run_on_host $IPSTART "free" "Check that the swap space"
-sleep 10
+wait_key $WAIT_SHORT
+run_on_host $IPSTART "free" "Check that the swap space is mounted/activated"
+wait_key $WAIT_SHORT
 virsh -c qemu:///system destroy demo01
 
 
