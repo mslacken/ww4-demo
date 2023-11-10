@@ -22,6 +22,7 @@ while true ; do
   ssh -xo "StrictHostKeyChecking=no" root@$IPSTART uname -n 2> /dev/null && break || echo -n "."
   sleep 1
 done
+ssh-keygen -R  -f $IPSTART ~/.ssh/known_hosts
 run_on_host $IPSTART "neofetch" "Getting our pretty graph on tumbleweed"
 wait_key $WAIT_LONG
 kill %1
