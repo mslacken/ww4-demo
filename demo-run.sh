@@ -8,5 +8,7 @@ show "so that the next run of $0 will start with a fresh environment."
 ./run-simple.sh || { echo run-simple.sh failed; exit 1; }
 ./run-tw.sh || { echo run-tw.sh failed; exit 1; }
 ./run-slurm.sh || { echo run-slurm.sh failed; exit 1; }
+./run-grub.sh || { echo run-grub.sh failed; exit 1; }
+./run-storage.sh.sh || { echo run-storage.sh failed; exit 1; }
 ./get-cache.sh && \
 terraform destroy -auto-approve
